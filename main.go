@@ -1,16 +1,11 @@
 package main
 
 import (
-	"github.com/gin-gonic/gin"
-
-	"web-service-gin/controllers"
+	"web-service-gin/db"
+	"web-service-gin/router"
 )
 
 func main() {
-	router := gin.Default()
-	router.GET("/albums", controllers.GetAlbums)
-	router.GET("/albums/:id", controllers.GetAlbumByID)
-	router.POST("/albums", controllers.PostAlbums)
-
-	router.Run("localhost:8080")
+	dbConn := db.Init()
+	router.Router(dbConn)
 }
