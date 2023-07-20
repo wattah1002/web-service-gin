@@ -13,8 +13,8 @@ func Router(dbConn *gorm.DB) {
 	}
 	router := gin.Default()
 	router.GET("/albums", albumHandler.GetAlbums)
+	router.POST("/albums", albumHandler.PostAlbums)
 	// router.GET("/albums/:id", controllers.GetAlbumByID)
-	// router.POST("/albums", controllers.PostAlbums)
 
 	router.Run("localhost:8080")
 }

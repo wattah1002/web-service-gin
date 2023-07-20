@@ -28,19 +28,19 @@ func (h *AlbumHandler) GetAlbums(c *gin.Context) {
 }
 
 // // postAlbums adds an album from JSON received in the request body.
-// func PostAlbums(c *gin.Context) {
-// 	var newAlbum models.Album
+func (h *AlbumHandler) PostAlbums(c *gin.Context) {
+	var newAlbum models.Album
 
-// 	// Call BindJSON to bind the received JSON to
-// 	// newAlbum.
-// 	if err := c.BindJSON(&newAlbum); err != nil {
-// 		return
-// 	}
+	// Call BindJSON to bind the received JSON to
+	// newAlbum.
+	if err := c.BindJSON(&newAlbum); err != nil {
+		return
+	}
 
-// 	// Add the new album to the slice.
-// 	albums = append(albums, newAlbum)
-// 	c.IndentedJSON(http.StatusCreated, newAlbum)
-// }
+	h.Db.Create(&newAlbum)
+
+	c.IndentedJSON(http.StatusCreated, newAlbum)
+}
 
 // // getAlbumByID locates the album whose ID value matches the id
 // // parameter sent by the client, then returns that album as a response.
